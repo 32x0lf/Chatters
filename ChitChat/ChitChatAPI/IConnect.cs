@@ -16,7 +16,7 @@ namespace ChitChatAPI
         bool IsRegistered(string Name);
         bool IsVisible(string uname);
         void statusMessage(string message, string uname);
-        void database(string connectionstring);
+        void database(string connectionstring, Types type);
         void ChangePassword(string uname, string oldpassword, string newpassword);
     }
 
@@ -35,6 +35,19 @@ namespace ChitChatAPI
         public string Sender { get { return sender; } }
     }
     
+    public class Types
+     {
+        string type;
+        public Types(string utype)
+        {
+            type = utype;
+        }
+        public enum user
+        {
+            server,
+            client
+        }
+     }
    
   
 }
