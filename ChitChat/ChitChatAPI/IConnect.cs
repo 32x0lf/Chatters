@@ -18,6 +18,7 @@ namespace ChitChatAPI
         void statusMessage(string message, string uname);
         void database(string connectionstring, Types type);
         void ChangePassword(string uname, string oldpassword, string newpassword);
+        string Typeuser{ get; set; }
     }
 
    
