@@ -15,9 +15,26 @@ namespace ChitChatAPI
         bool IsServerisdown(string server);
         bool IsRegistered(string Name);
         bool IsVisible(string uname);
-        void statusMessage(string message,string uname);
+        void statusMessage(string message, string uname);
         void database(string connectionstring);
         void ChangePassword(string uname, string oldpassword, string newpassword);
-
     }
+
+   
+    [Serializable]
+    public class MessageReceived
+    {
+        string message;
+        string sender;
+        public MessageReceived(string message,string sender)
+        {
+            this.message = message;
+            this.sender = sender;
+        }
+        public string Message { get { return message;  } }
+        public string Sender { get { return sender; } }
+    }
+    
+   
+  
 }
