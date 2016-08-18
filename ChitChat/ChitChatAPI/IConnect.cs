@@ -8,8 +8,8 @@ namespace ChitChatAPI
 {
     public interface IConnect
     {
-        void Server(string server);
-        void clientName(string uname);
+        string Server { get; }
+        string clientName { get; }
         bool IsConnected(string client);
         bool IsDisconnected(string client);
         bool IsServerisdown(string server);
@@ -18,7 +18,7 @@ namespace ChitChatAPI
         void statusMessage(string message, string uname);
         void database(string connectionstring, Types type);
         void ChangePassword(string uname, string oldpassword, string newpassword);
-        string Typeuser{ get; set; }
+        string Typeuser{ get;}
     }
 
    

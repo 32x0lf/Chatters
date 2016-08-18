@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Servercls.cs" />
     <Compile Include="MainServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,8 +88,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChitChatAPI\ChitChatAPI.csproj">
+      <Project>{af2c01c9-ff68-456d-9dd7-eaa32b36fb5b}</Project>
+      <Name>ChitChatAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
