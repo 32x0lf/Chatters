@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChitChatAPI;
+using ChitChatAPI.Enums;
 
 namespace ChitChat.Core
 {
@@ -14,6 +15,14 @@ namespace ChitChat.Core
             get
             {
                 return clientName;
+            }
+        }
+
+        public ConnTypes conntype
+        {
+            get
+            {
+                return conntype;
             }
         }
 
@@ -38,9 +47,9 @@ namespace ChitChat.Core
            
         }
 
-        public void database(string connectionstring, Types type)
+        public void database(string connectionstring, Client.Types type)
         {
-            
+           
         }
 
         public bool IsConnected(string client)
