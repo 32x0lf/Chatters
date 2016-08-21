@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Clientcls.cs" />
     <Compile Include="Core\Servercls.cs" />
     <Compile Include="MainServer.cs">
       <SubType>Form</SubType>
@@ -83,6 +84,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="server.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

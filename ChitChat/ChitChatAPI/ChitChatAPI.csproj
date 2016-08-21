@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,7 +43,12 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Enums\ConnTypes.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventLogger.cs" />
+    <Compile Include="Helper\Utils.cs" />
     <Compile Include="IConnect.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

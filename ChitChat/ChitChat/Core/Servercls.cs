@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using ChitChatAPI;
 using ChitChatAPI.Enums;
+using System.Security.Cryptography.X509Certificates;
+using ChitChat.Network;
+using System.Net.NetworkInformation;
 
 namespace ChitChat.Core
 {
     public class Servercls : IConnect
     {
+       // public static Clientcls _client;
+        public static Networking _security;
         public string clientName
         {
             get
@@ -81,5 +86,35 @@ namespace ChitChat.Core
         {
             throw new NotImplementedException();
         }
+
+        public static string GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType _type)
+        {
+            string output = "";
+            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up)
+                {
+                    IPInterfaceProperties adapterProperties = item.GetIPProperties();
+
+                    if (adapterProperties.GatewayAddresses.FirstOrDefault() != null)
+                    {
+                        foreach (UnicastIPAddressInformation ip in adapterProperties.UnicastAddresses)
+                        {
+                            if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                            {
+                                output = ip.Address.ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return output;
+        }
+
+        public X509Certificate cert = new X509Certificate(_security.file , _security.pass);
+
+       
+
     }
 }
