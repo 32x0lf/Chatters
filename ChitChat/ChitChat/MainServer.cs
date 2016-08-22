@@ -62,7 +62,7 @@ namespace ChitChat
             }
             catch(Exception ex)
             {
-
+                Logger.Write(ex.Message, LogLevel.Error, ConsoleColor.Red);
             }
         }
 
@@ -70,26 +70,36 @@ namespace ChitChat
         {
             if (btnstart.Text == "START")
             {
-                btnstart.Text = "STOP";
-                running = true;
-
-                server = new TcpListener(ip, port);
-                Logger.Write($"Listening to port: {port}", LogLevel.Info, ConsoleColor.Yellow);
-                server.Start();
-                Logger.Write($"Server Started", LogLevel.Info, ConsoleColor.Green);
-
-                (new Thread(new ThreadStart(Listening))).Start();
+                Start();
             }
-            else if(btnstart.Text == "STOP")
+            else if (btnstart.Text == "STOP")
             {
-                btnstart.Text = "START";
-                running = false;
-                server.Stop();
-                Logger.Write($"Server Stopped at {DateTime.Now}", LogLevel.Info, ConsoleColor.DarkRed);
+                Stop();
             }
         }
 
-         void Listening()
+        private void Stop()
+        {
+            btnstart.Text = "START";
+            running = false;
+            server.Stop();
+            Logger.Write($"Server Stopped at {DateTime.Now}", LogLevel.Info, ConsoleColor.DarkRed);
+        }
+
+        private void Start()
+        {
+            btnstart.Text = "STOP";
+            running = true;
+
+            server = new TcpListener(ip, port);
+            Logger.Write($"Listening to port: {port}", LogLevel.Info, ConsoleColor.Yellow);
+            server.Start();
+            Logger.Write($"Server Started", LogLevel.Info, ConsoleColor.Green);
+
+            (new Thread(new ThreadStart(Listening))).Start();
+        }
+
+        void Listening()
         {
             Logger.Write($"Waiting for request", LogLevel.Info, ConsoleColor.DarkGray);
             while (running)
