@@ -1,3 +1,5 @@
+https://ci.appveyor.com/api/projects/status/github/32x0lf/Chatters
+
 # Chatters
 
 An IM with encrypted connection and can have or add multiple channels/server.
