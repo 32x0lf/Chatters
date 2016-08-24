@@ -1,27 +1,4 @@
-# Chatters
+# ChitChat
 
-An IM with encrypted connection and can have or add multiple channels/server.
+A Simple P2P Chat for beginners in programming C#. This is for educational purpose only.
 
-# Plan Features:
-
-- Server does not log messages.
-- Can remote to other users.
-- Can send and accept files.
-- Speech to text (optional).
-
-
-
-# Contributions:
-
-Feel free to contribute.
-
-# Currently Working on:
-
-- GUI
-- Server Side accepting request.
-- Client Side sending request.
-
-# Purpose:
-
-This is for educational purposes only as part of my learning process using C#.
-Beginners can join.
