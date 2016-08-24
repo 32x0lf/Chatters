@@ -1,4 +1,4 @@
-https://ci.appveyor.com/api/projects/status/github/32x0lf/Chatters?branch=Design-UI&svg=true
+<img src=https://ci.appveyor.com/api/projects/status/github/32x0lf/Chatters?branch=Design-UI&svg=true>
 # Chatters
 
 An IM with encrypted connection and can have or add multiple channels/server.
