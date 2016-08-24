@@ -1,4 +1,4 @@
-<img src="https://ci.appveyor.com/api/projects/status/32x0lf/Chatters?svg=true&passingText=master%20-%20OK" alt="Project Badge">
+
 
 # Chatters
 
