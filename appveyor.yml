@@ -1,0 +1,5 @@
+configuration: Release
+
+#Restore Nuget Packages before building MSBUILD
+before_build:
+- nuget restore
