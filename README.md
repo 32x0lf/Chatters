@@ -1,4 +1,4 @@
-https://ci.appveyor.com/api/projects/status/github/32x0lf/Chatters
+https://ci.appveyor.com/api/projects/status/github/32x0lf/Chatters.git
 
 # Chatters
 
