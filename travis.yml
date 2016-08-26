@@ -1,2 +1,11 @@
 language: csharp
 solution: ChitChat.sln
+
+deploy:
+  provider: releases
+  api_key: "it: https://github.com/ on ETLEAOLF at 17-Aug-2016 01:59"
+  file: "Chatters"
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true
