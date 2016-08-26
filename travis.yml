@@ -3,7 +3,7 @@ solution: ChitChat.sln
 
 deploy:
   provider: releases
-  api_key: "it: https://github.com/ on ETLEAOLF at 17-Aug-2016 01:59"
+  api_key: "bcb5dd2937ff64570bd6c92493fd5e685cdcc9c4"
   file: "Chatters"
   skip_cleanup: true
   overwrite: true
