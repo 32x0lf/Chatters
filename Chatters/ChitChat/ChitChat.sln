@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChitChatClient", "..\..\..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChitChatAPI", "..\..\..\Chatters-master\Chatters\ChitChat\ChitChatAPI\ChitChatAPI.csproj", "{AF2C01C9-FF68-456D-9DD7-EAA32B36FB5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceProvider", "ServiceProvider\ServiceProvider.csproj", "{E23771D8-CC75-43EF-8F79-C1AF0ABBFC3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AF2C01C9-FF68-456D-9DD7-EAA32B36FB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF2C01C9-FF68-456D-9DD7-EAA32B36FB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF2C01C9-FF68-456D-9DD7-EAA32B36FB5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E23771D8-CC75-43EF-8F79-C1AF0ABBFC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23771D8-CC75-43EF-8F79-C1AF0ABBFC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23771D8-CC75-43EF-8F79-C1AF0ABBFC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23771D8-CC75-43EF-8F79-C1AF0ABBFC3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
