@@ -3,7 +3,7 @@ skip_branch_with_pr: true
 configuration: Debug
 platform: Any CPU
 init:
-- cmd: wget https://github.com/32x0lf/Chatters.git APPVEYOR_BUILD_FOLDER
+- ps: git clone https://github.com/32x0lf/Chatters.git APPVEYOR_BUILD_FOLDER
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
