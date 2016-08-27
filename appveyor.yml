@@ -1,5 +1,12 @@
-version: 1.0.0{build}
+version: 1.0.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
 skip_branch_with_pr: true
+image: Visual Studio 2015
+shallow_clone: true
+clone_folder: E:\Engineering\Chatters\
+init:
+- ps: git config --global core.autocrlf input
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -7,13 +14,12 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 hosts:
-  appveyor1: 74.205.54.20
-  appveyor2: 138.91.141.243
+  appveyor: 127.0.0.1
 nuget:
   account_feed: true
   project_feed: true
 before_build:
-- ps: Nuget restore ChitChat.sln
+- cmd: Nuget restore %ChitChat.sln%
 build:
   project: ChitChat.sln
   parallel: true
@@ -32,9 +38,11 @@ notifications:
   - 32xolf@gmail.com
   subject: Build
   on_build_success: true
-  on_build_failure: true
+  on_build_failure: false
   on_build_status_changed: false
 - provider: GitHubPullRequest
+  auth_token:
+    secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: false
