@@ -13,7 +13,7 @@ nuget:
   account_feed: true
   project_feed: true
 before_build:
-- ps: Nuget restore %ChitChat.sln%
+- ps: Nuget restore ChitChat.sln
 build:
   project: ChitChat.sln
   parallel: true
