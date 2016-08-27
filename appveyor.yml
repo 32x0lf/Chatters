@@ -18,7 +18,6 @@ nuget:
   account_feed: true
   project_feed: true
 build:
-  project: '*.sln'
   parallel: true
   verbosity: minimal
 deploy:
