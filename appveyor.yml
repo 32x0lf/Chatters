@@ -1,12 +1,9 @@
-version: 1.0.0.{build}
-pull_requests:
-  do_not_increment_build_number: true
+version: 1.0.0{build}
 skip_branch_with_pr: true
-image: Visual Studio 2015
-shallow_clone: true
-clone_folder: APPVEYOR_BUILD_FOLDER
+configuration: Debug
+platform: Any CPU
 init:
-- ps: git config --global core.autocrlf input
+- cmd: wget https://github.com/32x0lf/Chatters.git APPVEYOR_BUILD_FOLDER
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -22,7 +19,7 @@ nuget:
   account_feed: true
   project_feed: true
 before_build:
-- cmd: Nuget restore %ChitChat.sln%
+- ps: 
 build:
   project: ChitChat.sln
   parallel: true
@@ -41,11 +38,9 @@ notifications:
   - 32xolf@gmail.com
   subject: Build
   on_build_success: true
-  on_build_failure: false
+  on_build_failure: true
   on_build_status_changed: false
 - provider: GitHubPullRequest
-  auth_token:
-    secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: false
