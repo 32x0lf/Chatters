@@ -3,7 +3,7 @@ skip_branch_with_pr: true
 configuration: Debug
 platform: Any CPU
 init:
-- cmd: git clone -q https://github.com/32x0lf/Chatters.git e:\Engineering\Chatters
+- cmd: git clone -q https://github.com/32x0lf/Chatters.git c:\projects\chatter
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
