@@ -14,8 +14,6 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
-before_build:
-- cmd: nuget restore
 build:
   parallel: true
   verbosity: minimal
