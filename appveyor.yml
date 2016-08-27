@@ -1,5 +1,6 @@
 version: 1.0.0{build}
-configuration: Debug
+image: Visual Studio 2015
+configuration: Release
 platform: Any CPU
 assembly_info:
   patch: true
@@ -9,16 +10,19 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
-hosts:
-  localhost: 127.0.0.1
-  db.server.com: 127.0.0.2
+  matrix:
+  - {}
 nuget:
   account_feed: true
   project_feed: true
+before_build:
+- cmd: Nuget restore %ChitChat.sln%
 build:
   project: ChitChat.sln
   parallel: true
   verbosity: minimal
+after_build:
+- cmd: 7z a Chatter.zip %APPVEYOR_BUILD_FOLDER%\ChitChat\bin\Release\*.*
 deploy:
 - provider: GitHub
   release: Beta
