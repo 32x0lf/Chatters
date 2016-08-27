@@ -25,6 +25,10 @@ skip_tags: true
 # Start builds on tags only (GitHub and BitBucket)
 skip_non_tags: true
 
+environment:
+  my_variable:
+    secure: xOCiMEyp2jwJFEgPYK77YA==
+
 # Including commits with particular message or from specific user
 only_commits:
   message: /build/                # Start a new build if message contains 'build'
