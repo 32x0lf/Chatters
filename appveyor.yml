@@ -1,12 +1,14 @@
 version: 1.0.0{build}
 skip_branch_with_pr: true
-clone_folder: E:\Engineering\Chatters
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+hosts:
+  appveyor1: 74.205.54.20
+  appveyor2: 138.91.141.243
 nuget:
   account_feed: true
   project_feed: true
