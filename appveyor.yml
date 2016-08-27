@@ -18,7 +18,7 @@ nuget:
   account_feed: true
   project_feed: true
 before_build:
-- cmd: Nuget restore %Chatters\ChitChat.sln%
+- cmd: nuget restore
 build:
   parallel: true
   verbosity: minimal
