@@ -18,7 +18,7 @@ nuget:
   account_feed: true
   project_feed: true
 build_script:
-- cmd: build\E:\Engineering\Chatters\ChitChat.sln
+- cmd: build\E:\Engineering\Chatters\Chatters\ChitChat.sln
 deploy:
 - provider: GitHub
   release: Beta
