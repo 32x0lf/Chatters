@@ -1,7 +1,11 @@
-version: 1.0.0{build}
+version: 1.0.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+skip_branch_with_pr: true
 image: Visual Studio 2015
-configuration: Release
-platform: Any CPU
+shallow_clone: true
+init:
+- ps: git config --global core.autocrlf input
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -10,8 +14,11 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
-  matrix:
-  - {}
+hosts:
+  localhost: 127.0.0.1
+  db.server.com: 127.0.0.2
+install:
+- cmd: set PATH=C:\Program Files (x86)\MSBuild\12.0\Bin;%PATH%
 nuget:
   account_feed: true
   project_feed: true
@@ -21,8 +28,6 @@ build:
   project: ChitChat.sln
   parallel: true
   verbosity: minimal
-after_build:
-- cmd: 7z a Chatter.zip %APPVEYOR_BUILD_FOLDER%\ChitChat\bin\Release\*.*
 deploy:
 - provider: GitHub
   release: Beta
@@ -37,9 +42,11 @@ notifications:
   - 32xolf@gmail.com
   subject: Build
   on_build_success: true
-  on_build_failure: true
+  on_build_failure: false
   on_build_status_changed: false
 - provider: GitHubPullRequest
+  auth_token:
+    secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: false
