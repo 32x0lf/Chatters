@@ -17,7 +17,7 @@ nuget:
   account_feed: true
   project_feed: true
 build:
-  project: '*.*sln'
+  project: ChitChat.sln
   parallel: true
   verbosity: minimal
 deploy:
