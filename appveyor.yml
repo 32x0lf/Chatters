@@ -2,23 +2,26 @@ version: 1.0.0.{build}
 pull_requests:
   do_not_increment_build_number: true
 skip_branch_with_pr: true
+image: Visual Studio 2015
 shallow_clone: true
-clone_folder: E:\Engineering\Chatters\Chatters\ChitChat
+clone_folder: E:\Engineering\Chatters\
 init:
-- ps: 
+- ps: git config --global core.autocrlf input
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+hosts:
+  appveyor: 127.0.0.1
 nuget:
   account_feed: true
   project_feed: true
+before_build:
+- cmd: Nuget restore %ChitChat.sln%
 build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
+  project: ChitChat.sln
   parallel: true
   verbosity: minimal
 deploy:
