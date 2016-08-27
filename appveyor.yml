@@ -13,7 +13,6 @@ nuget:
   account_feed: true
   project_feed: true
 build:
-  project: ChitChat.sln
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true
