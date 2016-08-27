@@ -14,15 +14,11 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
-install:
-- cmd: set PATH=C:\Program Files (x86)\MSBuild\12.0\Bin;%PATH%
 nuget:
   account_feed: true
   project_feed: true
-build:
-  project: ChitChat.sln
-  parallel: true
-  verbosity: minimal
+build_script:
+- ps: build/ChitChat.sln
 deploy:
 - provider: GitHub
   release: Beta
