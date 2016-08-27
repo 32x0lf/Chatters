@@ -1,0 +1,42 @@
+before_build:
+- nuget restore
+
+build:
+  project: ChitChat.sln      # path to Visual Studio solution or project
+  parallel: true                  # enable MSBuild parallel builds
+  verbosity: minimal
+ 
+nuget:
+  account_feed: true
+  project_feed: true  	  
+
+# version format
+version: 1.0.{build}
+
+# branches to build
+branches:
+  # whitelist
+   only:
+    - master
+    - "Design-UI"
+
+skip_tags: true
+
+# Start builds on tags only (GitHub and BitBucket)
+skip_non_tags: true
+
+# Including commits with particular message or from specific user
+only_commits:
+  message: /build/                # Start a new build if message contains 'build'
+  author: 32xolf@gmail.com       # Start a new build for commit of user with email jack@company.com
+
+  # Build worker image (VM template)
+image: Visual Studio 2015
+ 
+  # to add several platforms to build matrix:
+platform:
+#  - x86
+  - Any CPU
+  # build Configuration, i.e. Debug, Release, etc.
+configuration:
+- Release
