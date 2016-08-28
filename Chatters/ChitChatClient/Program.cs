@@ -16,7 +16,7 @@ namespace ChitChatClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainClient());
+            Application.Run(new FrmLogin());
         }
     }
 }
