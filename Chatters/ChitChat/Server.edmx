@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client_Details">
+          <Key>
+            <PropertyRef Name="Clien_Id" />
+          </Key>
+          <Property Name="Clien_Id" Type="int" Nullable="false" />
+          <Property Name="IsOnline" Type="bit" Nullable="false" />
+          <Property Name="IsAway" Type="bit" Nullable="false" />
+          <Property Name="Last_Session" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Client_Info">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Client_Uname" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_Uname" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Client_Upass" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Client_emailadd" Type="varchar" MaxLength="50" />
+          <Property Name="Client_Registered" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ServerInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="servername" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ipaddress" Type="varchar" MaxLength="12" />
+          <Property Name="port" Type="varchar" MaxLength="6" />
+          <Property Name="DNS" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="ServerModelStoreContainer">
+          <EntitySet Name="Client_Details" EntityType="Self.Client_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_Info" EntityType="Self.Client_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client_Details">
+          <Key>
+            <PropertyRef Name="Clien_Id" />
+          </Key>
+          <Property Name="Clien_Id" Type="Int32" Nullable="false" />
+          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+          <Property Name="IsAway" Type="Boolean" Nullable="false" />
+          <Property Name="Last_Session" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Client_Info">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Client_Uname" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_Uname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Client_Upass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Client_emailadd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Client_Registered" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ServerInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="servername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ipaddress" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="port" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="DNS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client_Details" EntityType="Self.Client_Details" />
+          <EntitySet Name="Client_Info" EntityType="Self.Client_Info" />
+          <EntitySet Name="ServerInfoes" EntityType="Self.ServerInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServerModelStoreContainer" CdmEntityContainer="ServerEntities">
+          <EntitySetMapping Name="Client_Details">
+            <EntityTypeMapping TypeName="ServerModel.Client_Details">
+              <MappingFragment StoreEntitySet="Client_Details">
+                <ScalarProperty Name="Clien_Id" ColumnName="Clien_Id" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="IsAway" ColumnName="IsAway" />
+                <ScalarProperty Name="Last_Session" ColumnName="Last_Session" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_Info">
+            <EntityTypeMapping TypeName="ServerModel.Client_Info">
+              <MappingFragment StoreEntitySet="Client_Info">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Client_Uname" ColumnName="Client_Uname" />
+                <ScalarProperty Name="Client_Upass" ColumnName="Client_Upass" />
+                <ScalarProperty Name="Client_emailadd" ColumnName="Client_emailadd" />
+                <ScalarProperty Name="Client_Registered" ColumnName="Client_Registered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServerInfoes">
+            <EntityTypeMapping TypeName="ServerModel.ServerInfo">
+              <MappingFragment StoreEntitySet="ServerInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="servername" ColumnName="servername" />
+                <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="DNS" ColumnName="DNS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
