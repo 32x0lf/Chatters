@@ -29,16 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtusername = new System.Windows.Forms.TextBox();
-            this.txtpass = new System.Windows.Forms.TextBox();
-            this.btnlogin = new System.Windows.Forms.Button();
-            this.linkforgot = new System.Windows.Forms.LinkLabel();
+            this.txtserverip = new System.Windows.Forms.TextBox();
             this.linkreg = new System.Windows.Forms.LinkLabel();
+            this.linkforgot = new System.Windows.Forms.LinkLabel();
+            this.btnlogin = new System.Windows.Forms.Button();
+            this.txtpass = new System.Windows.Forms.TextBox();
+            this.txtusername = new System.Windows.Forms.TextBox();
+            this.txtport = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtport);
+            this.groupBox1.Controls.Add(this.txtserverip);
             this.groupBox1.Controls.Add(this.linkreg);
             this.groupBox1.Controls.Add(this.linkforgot);
             this.groupBox1.Controls.Add(this.btnlogin);
@@ -50,28 +54,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // txtusername
+            // txtserverip
             // 
-            this.txtusername.Location = new System.Drawing.Point(112, 133);
-            this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(185, 20);
-            this.txtusername.TabIndex = 0;
+            this.txtserverip.Location = new System.Drawing.Point(153, 260);
+            this.txtserverip.Name = "txtserverip";
+            this.txtserverip.Size = new System.Drawing.Size(144, 20);
+            this.txtserverip.TabIndex = 6;
             // 
-            // txtpass
+            // linkreg
             // 
-            this.txtpass.Location = new System.Drawing.Point(112, 159);
-            this.txtpass.Name = "txtpass";
-            this.txtpass.Size = new System.Drawing.Size(185, 20);
-            this.txtpass.TabIndex = 1;
-            // 
-            // btnlogin
-            // 
-            this.btnlogin.Location = new System.Drawing.Point(153, 185);
-            this.btnlogin.Name = "btnlogin";
-            this.btnlogin.Size = new System.Drawing.Size(102, 32);
-            this.btnlogin.TabIndex = 2;
-            this.btnlogin.Text = "LOG-IN";
-            this.btnlogin.UseVisualStyleBackColor = true;
+            this.linkreg.AutoSize = true;
+            this.linkreg.Location = new System.Drawing.Point(251, 234);
+            this.linkreg.Name = "linkreg";
+            this.linkreg.Size = new System.Drawing.Size(46, 13);
+            this.linkreg.TabIndex = 5;
+            this.linkreg.TabStop = true;
+            this.linkreg.Text = "Register";
             // 
             // linkforgot
             // 
@@ -83,15 +81,35 @@
             this.linkforgot.TabStop = true;
             this.linkforgot.Text = "Forgot Password";
             // 
-            // linkreg
+            // btnlogin
             // 
-            this.linkreg.AutoSize = true;
-            this.linkreg.Location = new System.Drawing.Point(251, 234);
-            this.linkreg.Name = "linkreg";
-            this.linkreg.Size = new System.Drawing.Size(46, 13);
-            this.linkreg.TabIndex = 5;
-            this.linkreg.TabStop = true;
-            this.linkreg.Text = "Register";
+            this.btnlogin.Location = new System.Drawing.Point(153, 185);
+            this.btnlogin.Name = "btnlogin";
+            this.btnlogin.Size = new System.Drawing.Size(102, 32);
+            this.btnlogin.TabIndex = 2;
+            this.btnlogin.Text = "LOG-IN";
+            this.btnlogin.UseVisualStyleBackColor = true;
+            // 
+            // txtpass
+            // 
+            this.txtpass.Location = new System.Drawing.Point(112, 159);
+            this.txtpass.Name = "txtpass";
+            this.txtpass.Size = new System.Drawing.Size(185, 20);
+            this.txtpass.TabIndex = 1;
+            // 
+            // txtusername
+            // 
+            this.txtusername.Location = new System.Drawing.Point(112, 133);
+            this.txtusername.Name = "txtusername";
+            this.txtusername.Size = new System.Drawing.Size(185, 20);
+            this.txtusername.TabIndex = 0;
+            // 
+            // txtport
+            // 
+            this.txtport.Location = new System.Drawing.Point(153, 286);
+            this.txtport.Name = "txtport";
+            this.txtport.Size = new System.Drawing.Size(73, 20);
+            this.txtport.TabIndex = 7;
             // 
             // FrmLogin
             // 
@@ -115,5 +133,7 @@
         private System.Windows.Forms.Button btnlogin;
         private System.Windows.Forms.TextBox txtpass;
         private System.Windows.Forms.TextBox txtusername;
+        private System.Windows.Forms.TextBox txtserverip;
+        private System.Windows.Forms.TextBox txtport;
     }
 }
