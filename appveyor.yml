@@ -31,15 +31,3 @@ deploy:
     secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on:
     branch: master
-notifications:
-- provider: Email
-  to:
-  - 32xolf@gmail.com
-  subject: Build
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
-- provider: GitHubPullRequest
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
