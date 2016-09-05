@@ -1,9 +1,7 @@
-version: 1.0.0.{build}
-skip_branch_with_pr: true
+version: 1.0.0{build}
 image: Visual Studio 2015
 configuration: Release
 platform: Any CPU
-shallow_clone: true
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -12,11 +10,14 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
-services: mssql2014
+  matrix:
+  - {}
+nuget:
+  account_feed: true
+  project_feed: true
 before_build:
-- cmd: nuget restore %Chatters\ChitChat.sln%
+- ps: nuget restore Chatters\ChitChat.sln
 build:
-  project: Chatters\ChitChat.sln
   publish_nuget: true
   publish_nuget_symbols: true
   include_nuget_references: true
@@ -24,8 +25,21 @@ build:
   verbosity: minimal
 deploy:
 - provider: GitHub
+  release: Beta
   description: Beta
   auth_token:
     secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on:
     branch: master
+notifications:
+- provider: Email
+  to:
+  - 32xolf@gmail.com
+  subject: Build
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
+- provider: GitHubPullRequest
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
