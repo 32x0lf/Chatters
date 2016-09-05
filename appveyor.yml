@@ -16,9 +16,9 @@ environment:
   APPVEYOR_BUILD_FOLDER: E:\Engineering\Chatters
 services: mssql2014
 before_build:
-- cmd: nuget restore Chatters\Chatters.sln
+- cmd: nuget restore %Chatters\ChitChat.sln%
 build:
-  project: Chatters\Chatters.sln
+  project: Chatters\ChitChat.sln
   parallel: true
   verbosity: minimal
 deploy:
