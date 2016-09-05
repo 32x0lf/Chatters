@@ -116,6 +116,7 @@
     <Compile Include="Theme.Designer.cs">
       <DependentUpon>Theme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\UserInfo.cs" />
     <EmbeddedResource Include="MainServer.resx">
       <DependentUpon>MainServer.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,9 +151,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ChitChatAPI\ChitChatAPI.csproj">
       <Project>{af2c01c9-ff68-456d-9dd7-eaa32b36fb5b}</Project>
