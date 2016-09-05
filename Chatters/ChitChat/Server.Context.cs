@@ -19,6 +19,7 @@ namespace ChitChat
         public ServerEntities()
             : base("name=ServerEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
