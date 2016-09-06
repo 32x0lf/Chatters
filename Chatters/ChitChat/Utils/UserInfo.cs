@@ -12,12 +12,11 @@ namespace ChitChat.Utils
     {
         bool clientinfo;
         public Clientcls _connection;
-        public bool loggedin;
+        public Servercls _server;
         public UserInfo(Clientcls Connection,bool LoggedIn)
         {
             this._connection = Connection;
-            this.loggedin = LoggedIn;
-            
+            _server.IsConnected(LoggedIn);
         }
 
         public bool GetUser(string name,string password)

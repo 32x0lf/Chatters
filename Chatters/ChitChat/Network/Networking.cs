@@ -21,6 +21,9 @@ namespace ChitChat.Network
             get { return "instant"; }
         }
 
-        
+        public Networking()
+        {
+
+        }
     }
 }
