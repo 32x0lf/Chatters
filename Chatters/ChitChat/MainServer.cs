@@ -24,20 +24,23 @@ namespace ChitChat
         public int port = 3268;
         public bool running;
         public TcpListener server;
-        
+       
         public MainServer()
         {
             InitializeComponent();
-        }
+            
+    }
 
         private void MainServer_Load(object sender, EventArgs e)
         {
+            Servercls server = new Servercls();
             Event.OnMessageReceived += Events_onstatusmessage;
             Logger.SetLogger(new EventLogger(LogLevel.Info));
-            
-            ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
-            ip = IPAddress.Parse(ipv4);
 
+            
+            //ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
+            //ip = IPAddress.Parse(ipv4);
+            ip = IPAddress.Parse(server.Server);
             Logger.Write($"Click Start button to start server", LogLevel.Info, ConsoleColor.Magenta);
 
         }
