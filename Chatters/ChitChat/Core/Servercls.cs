@@ -8,13 +8,16 @@ using ChitChatAPI.Enums;
 using System.Security.Cryptography.X509Certificates;
 using ChitChat.Network;
 using System.Net.NetworkInformation;
+using ChitChat;
 
 namespace ChitChat.Core
 {
     public class Servercls : IConnect
     {
-       // public static Clientcls _client;
+        // public static Clientcls _client;
         public static Networking _security;
+        string ipv4;
+
         public string clientName
         {
             get
@@ -35,7 +38,8 @@ namespace ChitChat.Core
         {
             get
             {
-                return Server;
+                return ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Ethernet);
+                //return ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
             }
         }
 
@@ -57,9 +61,9 @@ namespace ChitChat.Core
            
         }
 
-        public bool IsConnected(string client)
+        public bool IsConnected(bool client)
         {
-            return true;
+            return client;
         }
 
         public bool IsDisconnected(string client)
@@ -87,6 +91,7 @@ namespace ChitChat.Core
             throw new NotImplementedException();
         }
 
+       
         public static string GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType _type)
         {
             string output = "";
@@ -112,9 +117,10 @@ namespace ChitChat.Core
             return output;
         }
 
-        public X509Certificate cert = new X509Certificate(_security.file , _security.pass);
+        //public X509Certificate cert = new X509Certificate(_security.file , _security.pass);
+        
 
-       
+
 
     }
 }
