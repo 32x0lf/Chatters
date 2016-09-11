@@ -30,7 +30,7 @@ namespace ChitChat
         {
             InitializeComponent();
             
-    }
+        }
 
         private void MainServer_Load(object sender, EventArgs e)
         {

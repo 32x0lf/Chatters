@@ -18,7 +18,7 @@ namespace ChitChatAPI
         bool IsRegistered(string Name);
         bool IsVisible(string uname);
         void statusMessage(string message, string uname);
-        void database(string connectionstring,  Client.Types type);
+        //void database(string connectionstring,  Client.Types type);
         void ChangePassword(string uname, string oldpassword, string newpassword);
         string Typeuser{ get;}
     } 
