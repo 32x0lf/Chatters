@@ -25,7 +25,10 @@ namespace ChitChat.Core
         public BinaryReader br;
         public BinaryWriter bw;
         public static Networking _security;
-        Servercls server = new Servercls();
+        UserInfo user;
+
+
+        public X509Certificate cert = new X509Certificate(_security.file, _security.pass);
         public Clientcls(MainServer main, TcpClient tc)
         {
             ms = main;
@@ -36,7 +39,7 @@ namespace ChitChat.Core
 
         void SetConn()
         {
-            
+
             // var cert = new Servercls();
             try
             {
@@ -59,20 +62,35 @@ namespace ChitChat.Core
                     string password = br.ReadString();
                     if (mode == Client.IM_Login)
                     {
-                        UserInfo user = new UserInfo(this, true);
-                        if (user.GetUser(username,password))
+
+                        if (user.GetUser(username, password))
                         {
                             //_userinfo._connection = this;
-                              user._connection =this;
 
-                            if (user._server.IsConnected(true))
+                            if (user._Details(username))
                             {
-                                
+                                //If connected..DisConnect the user.
+                                user._connection.CloseConn();
+                                user._connection = this;
+
                             }
-                            
+                            else
+                            {
+                                //Wrong password or USer.
+                                bw.Write(Client.IM_WrongPass);
+                            }
+
+                        }
+                        else
+                        {
+                            bw.Write(Client.IM_NoExists);
                         }
                     }
-                        
+                    else if (mode == Client.IM_Register)
+                    {
+                        //Register
+                    }
+
                 }
             }
             catch (Exception)
@@ -81,10 +99,23 @@ namespace ChitChat.Core
                 throw;
             }
         }
-        
-        public X509Certificate cert = new X509Certificate(_security.file, _security.pass);
 
 
+
+        void CloseConn() // Close connection.
+        {
+            try
+            {
+                user.Logged = false;
+                br.Close();
+                bw.Close();
+                sslstream.Close();
+                netstream.Close();
+                client.Close();
+                Logger.Write($"{DateTime.Now} End of connection", ChitChatAPI.Enums.LogLevel.Info, ConsoleColor.Yellow);
+            }
+            catch { }
+        }
 
     }
 }

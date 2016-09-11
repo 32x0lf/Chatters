@@ -10,13 +10,15 @@ namespace ChitChat.Utils
 {
     public class UserInfo
     {
-        bool clientinfo;
+        public bool clientinfo;
         public Clientcls _connection;
-        public Servercls _server;
+        public bool Logged;
+        Servercls _server = new Servercls();
+
         public UserInfo(Clientcls Connection,bool LoggedIn)
         {
             this._connection = Connection;
-            _server.IsConnected(LoggedIn);
+            this.Logged = LoggedIn;
         }
 
         public bool GetUser(string name,string password)
@@ -38,6 +40,29 @@ namespace ChitChat.Utils
                 
             }
             return clientinfo;
+         }
+         public bool _Details (string username)
+        {
+            bool s = false;
+            using(var ent = new ServerEntities())
+            {
+                var query = (from ci in ent.Client_Info
+                             join cd in ent.Client_Details on ci.id equals cd.Clien_Id
+                             where ci.Client_Uname == username 
+
+                             select new
+                             {
+                                 cd.IsOnline
+                              });
+
+                foreach(var q in query)
+                {
+                    if (q.IsOnline == true)                   
+                        s = true;                    
+                }
+            }
+
+            return s;
         }
 
     }
