@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ChitChatClient.Utils
 {
+    [Serializable]
     public partial class Settings
     {
+        
         public string ServerIp { get; set; }
         public string ServerPort { get; set; }
     }

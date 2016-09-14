@@ -11,6 +11,7 @@ namespace ChitChatAPI
     {
         ConnTypes conntype { get; }
         string Server { get; }
+        string ServerPort { get; }
         string clientName { get; }
         bool IsConnected(bool client);
         bool IsDisconnected(string client);

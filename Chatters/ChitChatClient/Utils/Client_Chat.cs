@@ -5,13 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using ChitChatAPI;
 using ChitChatAPI.Enums;
-
+using ChitChatClient.Utils;
 namespace ChitChatClient.Utils
 {
-    class Client_Chat : IConnect
+   public class Client_Chat : IConnect
     {
         bool Logged = false;
-        
+        Settings _settings = new Settings();
+        string serverip;
+        private string serverPort;
+
+        public Client_Chat(string serverIp)
+        {
+            serverip = serverIp;
+        }
+
+        public Client_Chat(string serverIp, string serverPort)
+        {
+            serverip = serverIp;
+            this.serverPort = serverPort;
+        }
+
         public string clientName
         {
             get
@@ -32,7 +46,7 @@ namespace ChitChatClient.Utils
         {
             get
             {
-                return null;
+                return serverip;
             }
         }
 
@@ -41,6 +55,14 @@ namespace ChitChatClient.Utils
             get
             {
                 return "Client";
+            }
+        }
+
+        public string ServerPort
+        {
+            get
+            {
+                return serverPort;
             }
         }
 
@@ -79,4 +101,5 @@ namespace ChitChatClient.Utils
             throw new NotImplementedException();
         }
     }
+    
 }

@@ -14,6 +14,9 @@ namespace ChitChatClient
     public partial class FrmLogin : Form
     {
         Settings settings = new Settings();
+        
+        IMClient _imclient = new IMClient();
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -41,10 +44,12 @@ namespace ChitChatClient
             Properties.Settings.Default.ServerIP = txtserverip.Text;
             Properties.Settings.Default.Port = txtport.Text;
             Properties.Settings.Default.Save();
-
-            settings.ServerIp = txtserverip.Text;
-            settings.ServerPort = txtport.Text;
-
+            
+            settings.ServerIp = Properties.Settings.Default.ServerIP;
+            settings.ServerPort = Properties.Settings.Default.Port;
+            Client_Chat c = new Client_Chat(settings.ServerIp, settings.ServerPort);
+            _imclient.setupcon(c.Server, c.ServerPort);
+                             
         }
     }
 }
