@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtport = new System.Windows.Forms.TextBox();
             this.txtserverip = new System.Windows.Forms.TextBox();
             this.linkreg = new System.Windows.Forms.LinkLabel();
             this.linkforgot = new System.Windows.Forms.LinkLabel();
             this.btnlogin = new System.Windows.Forms.Button();
             this.txtpass = new System.Windows.Forms.TextBox();
             this.txtusername = new System.Windows.Forms.TextBox();
-            this.txtport = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,14 @@
             this.groupBox1.Size = new System.Drawing.Size(393, 323);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtport
+            // 
+            this.txtport.Location = new System.Drawing.Point(153, 286);
+            this.txtport.Name = "txtport";
+            this.txtport.Size = new System.Drawing.Size(73, 20);
+            this.txtport.TabIndex = 7;
             // 
             // txtserverip
             // 
@@ -89,6 +97,7 @@
             this.btnlogin.TabIndex = 2;
             this.btnlogin.Text = "LOG-IN";
             this.btnlogin.UseVisualStyleBackColor = true;
+            this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
             // txtpass
             // 
@@ -104,13 +113,6 @@
             this.txtusername.Size = new System.Drawing.Size(185, 20);
             this.txtusername.TabIndex = 0;
             // 
-            // txtport
-            // 
-            this.txtport.Location = new System.Drawing.Point(153, 286);
-            this.txtport.Name = "txtport";
-            this.txtport.Size = new System.Drawing.Size(73, 20);
-            this.txtport.TabIndex = 7;
-            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,6 +121,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmLogin";
             this.Text = "FrmLogin";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

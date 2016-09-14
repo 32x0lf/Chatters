@@ -51,6 +51,14 @@ namespace ChitChat.Core
             }
         }
 
+        public string ServerPort
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public void ChangePassword(string uname, string oldpassword, string newpassword)
         {
            
