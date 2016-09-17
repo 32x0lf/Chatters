@@ -17,6 +17,7 @@ namespace ChitChat.Core
         // public static Clientcls _client;
         public static Networking _security;
         string ipv4;
+        static bool contype = false;
 
         public string clientName
         {
@@ -33,13 +34,12 @@ namespace ChitChat.Core
                 return conntype;
             }
         }
-
+        
         public string Server
         {
             get
             {
-                //return ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Ethernet);
-                return ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
+                return ipv4 = contype ? GetLocalIPv4(NetworkInterfaceType.Ethernet) : GetLocalIPv4(NetworkInterfaceType.Wireless80211);              
             }
         }
 
@@ -51,7 +51,7 @@ namespace ChitChat.Core
             }
         }
 
-        public string ServerPort
+        public int ServerPort
         {
             get
             {
@@ -79,9 +79,18 @@ namespace ChitChat.Core
             return true;
         }
 
-        public bool IsRegistered(string Name)
+        public bool IsRegistered
         {
-            return true;
+            get { return true; }
+            
+        }
+
+        public string clientPass
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public bool IsServerisdown(string server)
@@ -100,7 +109,7 @@ namespace ChitChat.Core
         }
 
        
-        public static string GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType _type)
+        public static string GetLocalIPv4(NetworkInterfaceType _type)
         {
             string output = "";
             foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
@@ -116,6 +125,7 @@ namespace ChitChat.Core
                             if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                             {
                                 output = ip.Address.ToString();
+                                contype = true;
                             }
                         }
                     }
@@ -126,7 +136,7 @@ namespace ChitChat.Core
         }
 
         //public X509Certificate cert = new X509Certificate(_security.file , _security.pass);
-        
+      
 
 
 

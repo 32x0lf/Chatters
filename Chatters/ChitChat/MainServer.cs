@@ -38,7 +38,7 @@ namespace ChitChat
             Event.OnMessageReceived += Events_onstatusmessage;
             Logger.SetLogger(new EventLogger(LogLevel.Info));
 
-            
+
             //ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
             //ip = IPAddress.Parse(ipv4);
             ip = IPAddress.Parse(server.Server);

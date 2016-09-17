@@ -5,8 +5,11 @@
     <Setting Name="ServerIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
-    <Setting Name="Port" Type="System.String" Scope="User">
+    <Setting Name="Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3268</Value>
+    </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

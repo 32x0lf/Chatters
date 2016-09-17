@@ -24,11 +24,11 @@ namespace ChitChat.Core
         public SslStream sslstream;
         public BinaryReader br;
         public BinaryWriter bw;
-        public static Networking _security;
+        Networking _security = new Networking();
         UserInfo user;
 
 
-        public X509Certificate cert = new X509Certificate(_security.file, _security.pass);
+        //public X509Certificate cert = new X509Certificate(_security., _security.pass);
         public Clientcls(MainServer main, TcpClient tc)
         {
             ms = main;
@@ -46,7 +46,7 @@ namespace ChitChat.Core
                 Logger.Write($"New Connection Created!", ChitChatAPI.Enums.LogLevel.Info, ConsoleColor.Magenta);
                 netstream = client.GetStream();
                 sslstream = new SslStream(netstream, false);
-                sslstream.AuthenticateAsServer(cert, false, SslProtocols.Tls, true);
+                sslstream.AuthenticateAsServer(_security.cert, false, SslProtocols.Tls, true);
                 Logger.Write($"Connection is now authenticated!", ChitChatAPI.Enums.LogLevel.Info, ConsoleColor.Green);
                 br = new BinaryReader(sslstream, Encoding.UTF8);
                 bw = new BinaryWriter(sslstream, Encoding.UTF8);

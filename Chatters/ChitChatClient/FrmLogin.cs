@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChitChatClient.Utils;
+using System.Threading;
 
 namespace ChitChatClient
 {
@@ -22,10 +23,10 @@ namespace ChitChatClient
             InitializeComponent();
             
             txtserverip.Text = Properties.Settings.Default.ServerIP;
-            txtport.Text = Properties.Settings.Default.Port;
-
+            txtport.Text = Properties.Settings.Default.Port.ToString();
+            txtusername.Text = Properties.Settings.Default.UserName;
             settings.ServerIp = txtserverip.Text;
-            settings.ServerPort = txtport.Text;
+            settings.ServerPort = int.Parse(txtport.Text);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -42,13 +43,17 @@ namespace ChitChatClient
         private void btnlogin_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.ServerIP = txtserverip.Text;
-            Properties.Settings.Default.Port = txtport.Text;
+            Properties.Settings.Default.Port = int.Parse(txtport.Text);
+            Properties.Settings.Default.UserName = txtusername.Text;
             Properties.Settings.Default.Save();
             
             settings.ServerIp = Properties.Settings.Default.ServerIP;
             settings.ServerPort = Properties.Settings.Default.Port;
-            Client_Chat c = new Client_Chat(settings.ServerIp, settings.ServerPort);
-            _imclient.setupcon(c.Server, c.ServerPort);
+            settings.Uname = Properties.Settings.Default.UserName;
+            settings.Upass = txtpass.Text;
+            Client_Chat c = new Client_Chat(settings.ServerIp, settings.ServerPort,settings.Uname,settings.Upass,true);
+            Thread t1 = new Thread(() => _imclient.setupcon(c.Server, c.ServerPort,c.clientName,c.clientPass,c.IsRegistered));
+            t1.Start();
                              
         }
     }
