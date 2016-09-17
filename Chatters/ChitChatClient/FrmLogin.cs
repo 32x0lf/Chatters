@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChitChatClient.Utils;
 using System.Threading;
+using ChitChatAPI;
+using ChitChatAPI.Events;
+using ChitChatAPI.Enums;
 
 namespace ChitChatClient
 {
@@ -27,6 +30,8 @@ namespace ChitChatClient
             txtusername.Text = Properties.Settings.Default.UserName;
             settings.ServerIp = txtserverip.Text;
             settings.ServerPort = int.Parse(txtport.Text);
+            Event.OnMessageReceived += Events_onstatusmessage;
+            Logger.SetLogger(new EventLogger(LogLevel.Info));
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -36,8 +41,22 @@ namespace ChitChatClient
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-        //    settings.ServerIp = txtserverip.Text;
-        //    settings.ServerPort = txtport.Text;
+            //Event.OnMessageReceived += Events_onstatusmessage;
+            //Logger.SetLogger(new EventLogger(LogLevel.Info));
+        }
+
+        private void Events_onstatusmessage(object sender, Event.LogReceivedArgs e)
+        {
+            try
+            {
+                if (!this.IsHandleCreated)
+                    return;
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    MessageBox.Show(e.Message,"Chatter Client");
+                });
+            }   
+            catch { }
         }
 
         private void btnlogin_Click(object sender, EventArgs e)

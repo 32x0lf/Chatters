@@ -15,13 +15,17 @@ namespace ChitChat.Utils
         public bool Logged;
         Servercls _server = new Servercls();
 
-        public UserInfo(Clientcls Connection,bool LoggedIn)
+        public UserInfo()
+        {
+
+        }
+        public UserInfo(Clientcls Connection, bool LoggedIn)
         {
             this._connection = Connection;
             this.Logged = LoggedIn;
         }
 
-        public bool GetUser(string name,string password)
+        public bool GetUser(string name, string password)
         {
             try
             {
@@ -30,35 +34,37 @@ namespace ChitChat.Utils
                     var query = (from ui in ent.Client_Info
                                  where ui.Client_Uname == name && ui.Client_Upass == password
                                  select ui).FirstOrDefault<Client_Info>();
-
-                    this.clientinfo = true;
+                    if (query == null)
+                        this.clientinfo = false;
+                    else
+                        this.clientinfo = true;
                 }
             }
             catch (Exception ex)
             {
                 Logger.Write(ex.Message, ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
-                
+
             }
             return clientinfo;
-         }
-         public bool _Details (string username)
+        }
+        public bool _Details(string username)
         {
             bool s = false;
-            using(var ent = new ServerEntities())
+            using (var ent = new ServerEntities())
             {
                 var query = (from ci in ent.Client_Info
                              join cd in ent.Client_Details on ci.id equals cd.Clien_Id
-                             where ci.Client_Uname == username 
+                             where ci.Client_Uname == username
 
                              select new
                              {
                                  cd.IsOnline
-                              });
+                             });
 
-                foreach(var q in query)
+                foreach (var q in query)
                 {
-                    if (q.IsOnline == true)                   
-                        s = true;                    
+                    if (q.IsOnline == true)
+                        s = true;
                 }
             }
 

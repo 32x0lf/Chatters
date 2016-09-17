@@ -25,7 +25,7 @@ namespace ChitChat.Core
         public BinaryReader br;
         public BinaryWriter bw;
         Networking _security = new Networking();
-        UserInfo user;
+        UserInfo user = new UserInfo();
 
 
         //public X509Certificate cert = new X509Certificate(_security., _security.pass);
@@ -96,7 +96,7 @@ namespace ChitChat.Core
             catch (Exception)
             {
 
-                throw;
+               
             }
         }
 
