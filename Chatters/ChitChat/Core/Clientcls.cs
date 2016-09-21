@@ -25,7 +25,7 @@ namespace ChitChat.Core
         public BinaryReader br;
         public BinaryWriter bw;
         Networking _security = new Networking();
-        UserInfo user = new UserInfo();
+        UserInfo user;
 
 
         //public X509Certificate cert = new X509Certificate(_security., _security.pass);
@@ -40,7 +40,7 @@ namespace ChitChat.Core
         void SetConn()
         {
 
-            // var cert = new Servercls();
+           
             try
             {
                 Logger.Write($"New Connection Created!", ChitChatAPI.Enums.LogLevel.Info, ConsoleColor.Magenta);
@@ -62,24 +62,35 @@ namespace ChitChat.Core
                     string password = br.ReadString();
                     if (mode == Client.IM_Login)
                     {
-
-                        if (user.GetUser(username, password))
+                        user = new UserInfo(this, true);
+                        if (user.GetUser(username))
                         {
-                            //_userinfo._connection = this;
 
-                            if (user._Details(username))
+                            if (user.CheckPassword(username, password))
                             {
-                                //If connected..DisConnect the user.
-                                user._connection.CloseConn();
+                                //Check if the user Logged In.
                                 user._connection = this;
+                                if (!user._Details(username))
+                                {
+                                    user.UpdateLogged(username);
+                                }
+                                //If connected..DisConnect the user.
+                                else
+                                {
+                                    bw.Write(Client.IM_SomeoneLoggedIn);
+                                    user._connection.CloseConn();
+                                    user.Deactivate(username);
+                                    return;
+                                }
 
+                                user._connection = this;
+                                bw.Write(Client.IM_OK);
+                                bw.Flush();
                             }
                             else
                             {
-                                //Wrong password or USer.
                                 bw.Write(Client.IM_WrongPass);
                             }
-
                         }
                         else
                         {
@@ -93,10 +104,10 @@ namespace ChitChat.Core
 
                 }
             }
-            catch (Exception)
+            catch (IOException ex)
             {
 
-               
+                Logger.Write(ex.Message, ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
             }
         }
 
@@ -106,6 +117,7 @@ namespace ChitChat.Core
         {
             try
             {
+                int a = br.PeekChar() + 1;
                 user.Logged = false;
                 br.Close();
                 bw.Close();
@@ -113,8 +125,10 @@ namespace ChitChat.Core
                 netstream.Close();
                 client.Close();
                 Logger.Write($"{DateTime.Now} End of connection", ChitChatAPI.Enums.LogLevel.Info, ConsoleColor.Yellow);
+
             }
-            catch { }
+            catch (IOException e)
+            { Logger.Write(e.Message, ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red); }
         }
 
     }
