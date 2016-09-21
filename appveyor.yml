@@ -25,8 +25,8 @@ build:
   verbosity: minimal
 deploy:
 - provider: GitHub
-  release: Beta
-  description: Beta '{version}'
+  release: Chatters-V$(appveyor_build_version)
+  description: Beta
   auth_token:
     secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on:
