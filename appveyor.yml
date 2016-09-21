@@ -26,7 +26,7 @@ build:
 deploy:
 - provider: GitHub
   release: Beta
-  description: Beta
+  description: Beta '{version}'
   auth_token:
     secure: ZGNVfiS9e+inCnxZuBIwkJEZJjI//VoZVBjWs72e9JHgwODbZbqHACDbyk+Cszd5
   on:

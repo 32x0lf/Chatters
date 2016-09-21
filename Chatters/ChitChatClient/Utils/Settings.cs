@@ -12,6 +12,9 @@ namespace ChitChatClient.Utils
     {
         
         public string ServerIp { get; set; }
-        public string ServerPort { get; set; }
+        public int ServerPort { get; set; }
+        public string Uname { get; set; }
+        public string Upass { get; set; }
+        public bool IsReg { get; set; }
     }
 }

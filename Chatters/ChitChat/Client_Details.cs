@@ -11,12 +11,14 @@ namespace ChitChat
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Client_Details
+    using System.Data.Entity;
+
+    public partial class Client_Details 
     {
-        public int Clien_Id { get; set; }
+        public int Client_Id { get; set; }
         public bool IsOnline { get; set; }
         public bool IsAway { get; set; }
         public Nullable<System.DateTime> Last_Session { get; set; }
+        public bool IsLogged { get; set; }
     }
 }

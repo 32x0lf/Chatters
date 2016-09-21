@@ -36,11 +36,13 @@
             this.btnlogin = new System.Windows.Forms.Button();
             this.txtpass = new System.Windows.Forms.TextBox();
             this.txtusername = new System.Windows.Forms.TextBox();
+            this.lblstatus = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblstatus);
             this.groupBox1.Controls.Add(this.txtport);
             this.groupBox1.Controls.Add(this.txtserverip);
             this.groupBox1.Controls.Add(this.linkreg);
@@ -113,6 +115,14 @@
             this.txtusername.Size = new System.Drawing.Size(185, 20);
             this.txtusername.TabIndex = 0;
             // 
+            // lblstatus
+            // 
+            this.lblstatus.AutoSize = true;
+            this.lblstatus.Location = new System.Drawing.Point(29, 16);
+            this.lblstatus.Name = "lblstatus";
+            this.lblstatus.Size = new System.Drawing.Size(0, 13);
+            this.lblstatus.TabIndex = 8;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,5 +148,6 @@
         private System.Windows.Forms.TextBox txtusername;
         private System.Windows.Forms.TextBox txtserverip;
         private System.Windows.Forms.TextBox txtport;
+        private System.Windows.Forms.Label lblstatus;
     }
 }

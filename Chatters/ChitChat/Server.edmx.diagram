@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8bdf0aa3dcc04a9a93814dd6eb985a87" Name="Diagram1">
-        <EntityTypeShape EntityType="ServerModel.Client_Details" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="false" />
-        <EntityTypeShape EntityType="ServerModel.Client_Info" Width="1.5" PointX="3.125" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ServerModel.Client_Details" Width="1.5" PointX="4.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServerModel.Client_Info" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ServerModel.ServerInfo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>

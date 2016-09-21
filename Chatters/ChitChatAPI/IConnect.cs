@@ -11,12 +11,13 @@ namespace ChitChatAPI
     {
         ConnTypes conntype { get; }
         string Server { get; }
-        string ServerPort { get; }
+        int ServerPort { get; }
         string clientName { get; }
+        string clientPass { get; }
         bool IsConnected(bool client);
         bool IsDisconnected(string client);
         bool IsServerisdown(string server);
-        bool IsRegistered(string Name);
+        bool IsRegistered { get; }
         bool IsVisible(string uname);
         void statusMessage(string message, string uname);
         //void database(string connectionstring,  Client.Types type);

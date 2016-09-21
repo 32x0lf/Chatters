@@ -8,32 +8,48 @@ using ChitChatAPI.Enums;
 using ChitChatClient.Utils;
 namespace ChitChatClient.Utils
 {
-   public class Client_Chat : IConnect
+    public class Client_Chat : IConnect
     {
         bool Logged = false;
         Settings _settings = new Settings();
         string serverip;
-        private string serverPort;
+        int serverPort;
+        public string uname;
+        public string upass;
+        bool IsReg;
 
+        public Client_Chat()
+        {
+
+        }
         public Client_Chat(string serverIp)
         {
             serverip = serverIp;
         }
 
-        public Client_Chat(string serverIp, string serverPort)
+        public Client_Chat(string serverIp, int serverPort, string uname, string upass, bool IsReg)
         {
             serverip = serverIp;
             this.serverPort = serverPort;
+            this.uname = uname;
+            this.upass = upass;
+            this.IsReg = IsReg;
         }
 
         public string clientName
         {
             get
             {
-                throw new NotImplementedException();
+                return uname;
             }
         }
-
+        public string clientPass
+        {
+            get
+            {
+                return upass;
+            }
+        }
         public ConnTypes conntype
         {
             get
@@ -58,7 +74,7 @@ namespace ChitChatClient.Utils
             }
         }
 
-        public string ServerPort
+        public int ServerPort
         {
             get
             {
@@ -73,7 +89,7 @@ namespace ChitChatClient.Utils
 
         public bool IsConnected(bool client)
         {
-           return Logged;
+            return Logged;
         }
 
         public bool IsDisconnected(string client)
@@ -81,9 +97,13 @@ namespace ChitChatClient.Utils
             throw new NotImplementedException();
         }
 
-        public bool IsRegistered(string Name)
+        public bool IsRegistered
         {
-            throw new NotImplementedException();
+            get
+            {
+                return IsReg;
+            }
+           
         }
 
         public bool IsServerisdown(string server)
@@ -101,5 +121,5 @@ namespace ChitChatClient.Utils
             throw new NotImplementedException();
         }
     }
-    
+
 }
