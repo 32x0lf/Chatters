@@ -4,15 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client_Details">
           <Key>
-            <PropertyRef Name="Clien_Id" />
+            <PropertyRef Name="Client_Id" />
           </Key>
-          <Property Name="Clien_Id" Type="int" Nullable="false" />
+          <Property Name="Client_Id" Type="int" Nullable="false" />
           <Property Name="IsOnline" Type="bit" Nullable="false" />
           <Property Name="IsAway" Type="bit" Nullable="false" />
           <Property Name="Last_Session" Type="datetime" />
+          <Property Name="IsLogged" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Client_Info">
           <Key>
@@ -40,19 +41,19 @@
           <EntitySet Name="Client_Info" EntityType="Self.Client_Info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServerInfo" EntityType="Self.ServerInfo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client_Details">
           <Key>
-            <PropertyRef Name="Clien_Id" />
+            <PropertyRef Name="Client_Id" />
           </Key>
-          <Property Name="Clien_Id" Type="Int32" Nullable="false" />
+          <Property Name="Client_Id" Type="Int32" Nullable="false" />
           <Property Name="IsOnline" Type="Boolean" Nullable="false" />
           <Property Name="IsAway" Type="Boolean" Nullable="false" />
           <Property Name="Last_Session" Type="DateTime" Precision="3" />
+          <Property Name="IsLogged" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Client_Info">
           <Key>
@@ -89,7 +90,8 @@
           <EntitySetMapping Name="Client_Details">
             <EntityTypeMapping TypeName="ServerModel.Client_Details">
               <MappingFragment StoreEntitySet="Client_Details">
-                <ScalarProperty Name="Clien_Id" ColumnName="Clien_Id" />
+                <ScalarProperty Name="IsLogged" ColumnName="IsLogged" />
+                <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
                 <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
                 <ScalarProperty Name="IsAway" ColumnName="IsAway" />
                 <ScalarProperty Name="Last_Session" ColumnName="Last_Session" />

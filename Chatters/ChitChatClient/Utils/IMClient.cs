@@ -26,6 +26,7 @@ namespace ChitChatClient.Utils
         string _user;
         string _pass;
         bool _reg;
+       
 
         public IMClient()
         {
@@ -44,44 +45,63 @@ namespace ChitChatClient.Utils
 
         public void setupcon(string ip, int port, string uname, string upass, bool reg)
         {
-            _user = uname;
-            _pass = upass;
-            _reg = reg;
-            client = new TcpClient(ip, port);
-            netstream = client.GetStream();
-            ssl = new SslStream(netstream, false, new RemoteCertificateValidationCallback(ValidateCert));
-            ssl.AuthenticateAsClient("ChitChat");
-
-
-            br = new BinaryReader(ssl, Encoding.UTF8);
-            bw = new BinaryWriter(ssl, Encoding.UTF8);
-
-            int hello = br.ReadInt32();
-
-            if (hello == Client.IM_Hello)
+            try
             {
-                bw.Write(Client.IM_Hello);
-                bw.Write(_reg ? Client.IM_Login : Client.IM_Register);
-                bw.Write(_user);
-                bw.Write(_pass);
-                bw.Flush();
+                _user = uname;
+                _pass = upass;
+                _reg = reg;
+                client = new TcpClient(ip, port);
+                netstream = client.GetStream();
+                ssl = new SslStream(netstream, false, new RemoteCertificateValidationCallback(ValidateCert));
+                ssl.AuthenticateAsClient("ChitChat");
 
-                byte ans = br.ReadByte();
-                if (ans == Client.IM_OK)
-                {
-                    if (reg) { }
-                   
-                }
-                else if (ans == Client.IM_NoExists)
-                {
-                    Logger.Write("We cannot validate your logins. Please try again.");
-                }
 
+                br = new BinaryReader(ssl, Encoding.UTF8);
+                bw = new BinaryWriter(ssl, Encoding.UTF8);
+
+                int hello = br.ReadInt32();
+
+                if (hello == Client.IM_Hello)
+                {
+                    bw.Write(Client.IM_Hello);
+                    bw.Write(_reg ? Client.IM_Login : Client.IM_Register);
+                    bw.Write(_user);
+                    bw.Write(_pass);
+                    bw.Flush();
+
+                    int a = br.PeekChar() + 1; // I am not sure if this is correct but it works. Prevenet to have a -1 value.
+                    byte ans = br.ReadByte();
+
+                    if (ans  == Client.IM_OK)
+                    {
+                        if (reg)
+                        {
+
+                        }
+
+                    }
+                    else if (ans == Client.IM_WrongPass)
+                    {
+                        Logger.Write("Wrong Password, Please try again.");
+                    }
+                    else if (ans == Client.IM_NoExists)
+                    {
+                        Logger.Write("We cannot validate your logins. Please try again.", ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
+                    }
+                    else if (ans == Client.IM_SomeoneLoggedIn)
+                    {
+                        Logger.Write("Someone Logged-In to your account.", ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
+                    }
+
+                }
             }
-
+            catch(Exception ex)
+            {
+                Logger.Write(ex.Message);
+            }
         }
 
-   
+
         public static bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             // Uncomment this lines to disallow untrusted certificates.

@@ -53,7 +53,7 @@ namespace ChitChatClient
                     return;
                 this.Invoke((MethodInvoker)delegate ()
                 {
-                    MessageBox.Show(e.Message,"Chatter Client");
+                    lblstatus.Text = e.Message;
                 });
             }   
             catch { }
@@ -61,6 +61,7 @@ namespace ChitChatClient
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
+            Logger.Write("");
             Properties.Settings.Default.ServerIP = txtserverip.Text;
             Properties.Settings.Default.Port = int.Parse(txtport.Text);
             Properties.Settings.Default.UserName = txtusername.Text;

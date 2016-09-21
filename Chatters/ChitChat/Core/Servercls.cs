@@ -18,6 +18,7 @@ namespace ChitChat.Core
         public static Networking _security;
         string ipv4;
         static bool contype = false;
+        public static NetworkInterfaceType networktype {get;set;}
 
         public string clientName
         {
@@ -38,8 +39,9 @@ namespace ChitChat.Core
         public string Server
         {
             get
-            {
-                return ipv4 = contype ? GetLocalIPv4(NetworkInterfaceType.Ethernet) : GetLocalIPv4(NetworkInterfaceType.Wireless80211);              
+            {        
+                  
+                return ipv4 = contype ? GetLocalIPv4(NetworkInterfaceType.Wireless80211) : GetLocalIPv4(NetworkInterfaceType.Ethernet);                 
             }
         }
 
@@ -125,13 +127,36 @@ namespace ChitChat.Core
                             if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                             {
                                 output = ip.Address.ToString();
-                                contype = true;
+                                
                             }
                         }
                     }
+                    if (string.IsNullOrEmpty(output))
+                    {
+                        NetworkInterfaceType _type1 = NetworkInterfaceType.Wireless80211;
+                        foreach (NetworkInterface item1 in NetworkInterface.GetAllNetworkInterfaces())
+                        {
+                            if (item1.NetworkInterfaceType == _type1 && item1.OperationalStatus == OperationalStatus.Up)
+                            {
+                                IPInterfaceProperties adapterProperties1 = item1.GetIPProperties();
+
+                                if (adapterProperties1.GatewayAddresses.FirstOrDefault() != null)
+                                {
+                                    foreach (UnicastIPAddressInformation ip in adapterProperties1.UnicastAddresses)
+                                    {
+                                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                                        {
+                                            output = ip.Address.ToString();
+                                            contype = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }                             
+                    }
                 }
             }
-
+           
             return output;
         }
 

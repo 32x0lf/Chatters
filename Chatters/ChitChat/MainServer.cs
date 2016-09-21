@@ -42,6 +42,7 @@ namespace ChitChat
             //ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
             //ip = IPAddress.Parse(ipv4);
             ip = IPAddress.Parse(server.Server);
+            Logger.Write($"Server {ip}", LogLevel.Info, ConsoleColor.Magenta);
             Logger.Write($"Click Start button to start server", LogLevel.Info, ConsoleColor.Magenta);
 
         }
@@ -111,7 +112,7 @@ namespace ChitChat
                 
                 if (server.Pending())
                 {
-                    Logger.Write($"Found a pending request", LogLevel.Info, ConsoleColor.DarkCyan);
+                    Logger.Write($"Found 1 request from {server.LocalEndpoint}", LogLevel.Info, ConsoleColor.DarkCyan);
                     TcpClient tcp = server.AcceptTcpClient();
                     Clientcls _client = new Clientcls(this, tcp);
                 }

@@ -24,6 +24,8 @@ namespace ChitChatAPI
         public const byte IM_IsAvailable = 8;  // Is user available?
         public const byte IM_Send = 9;         // Send message
         public const byte IM_Received = 10;    // Message received
+        public const byte IM_LoggedIn = 11;    // Logged In
+        public const byte IM_SomeoneLoggedIn = 12;
 
         [Serializable]
         public class MessageReceived
