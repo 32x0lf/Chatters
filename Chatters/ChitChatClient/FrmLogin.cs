@@ -15,12 +15,12 @@ using ChitChatAPI.Enums;
 
 namespace ChitChatClient
 {
+    
     public partial class FrmLogin : Form
     {
         Settings settings = new Settings();
         
         IMClient _imclient = new IMClient();
-
         public FrmLogin()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace ChitChatClient
                 this.Invoke((MethodInvoker)delegate ()
                 {
                     lblstatus.Text = e.Message;
+                   
                 });
             }   
             catch { }
@@ -61,20 +62,22 @@ namespace ChitChatClient
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
+
             Logger.Write("");
             Properties.Settings.Default.ServerIP = txtserverip.Text;
             Properties.Settings.Default.Port = int.Parse(txtport.Text);
             Properties.Settings.Default.UserName = txtusername.Text;
             Properties.Settings.Default.Save();
-            
+
             settings.ServerIp = Properties.Settings.Default.ServerIP;
             settings.ServerPort = Properties.Settings.Default.Port;
             settings.Uname = Properties.Settings.Default.UserName;
             settings.Upass = txtpass.Text;
-            Client_Chat c = new Client_Chat(settings.ServerIp, settings.ServerPort,settings.Uname,settings.Upass,true);
-            Thread t1 = new Thread(() => _imclient.setupcon(c.Server, c.ServerPort,c.clientName,c.clientPass,c.IsRegistered));
+            Client_Chat c = new Client_Chat(settings.ServerIp, settings.ServerPort, settings.Uname, settings.Upass, true);
+            Thread t1 = new Thread(() => _imclient.setupcon(c.Server, c.ServerPort, c.clientName, c.clientPass, c.IsRegistered));
             t1.Start();
-                             
+           
         }
+
     }
 }

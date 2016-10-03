@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblstatus = new System.Windows.Forms.Label();
             this.txtport = new System.Windows.Forms.TextBox();
             this.txtserverip = new System.Windows.Forms.TextBox();
             this.linkreg = new System.Windows.Forms.LinkLabel();
@@ -36,7 +37,6 @@
             this.btnlogin = new System.Windows.Forms.Button();
             this.txtpass = new System.Windows.Forms.TextBox();
             this.txtusername = new System.Windows.Forms.TextBox();
-            this.lblstatus = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // lblstatus
+            // 
+            this.lblstatus.Location = new System.Drawing.Point(9, 16);
+            this.lblstatus.Name = "lblstatus";
+            this.lblstatus.Size = new System.Drawing.Size(374, 70);
+            this.lblstatus.TabIndex = 8;
+            this.lblstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtport
             // 
@@ -114,14 +122,6 @@
             this.txtusername.Name = "txtusername";
             this.txtusername.Size = new System.Drawing.Size(185, 20);
             this.txtusername.TabIndex = 0;
-            // 
-            // lblstatus
-            // 
-            this.lblstatus.AutoSize = true;
-            this.lblstatus.Location = new System.Drawing.Point(29, 16);
-            this.lblstatus.Name = "lblstatus";
-            this.lblstatus.Size = new System.Drawing.Size(0, 13);
-            this.lblstatus.TabIndex = 8;
             // 
             // FrmLogin
             // 

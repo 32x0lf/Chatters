@@ -39,8 +39,7 @@ namespace ChitChat.Core
         public string Server
         {
             get
-            {        
-                  
+            {                        
                 return ipv4 = contype ? GetLocalIPv4(NetworkInterfaceType.Wireless80211) : GetLocalIPv4(NetworkInterfaceType.Ethernet);                 
             }
         }
