@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using ChitChatAPI;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace ChitChatClient.Utils
 {
@@ -26,7 +27,7 @@ namespace ChitChatClient.Utils
         string _user;
         string _pass;
         bool _reg;
-       
+        public static bool _closeform { get; set; }
 
         public IMClient()
         {
@@ -69,20 +70,24 @@ namespace ChitChatClient.Utils
                     bw.Write(_pass);
                     bw.Flush();
 
-                    int a = br.PeekChar() + 1; // I am not sure if this is correct but it works. Prevenet to have a -1 value.
+                    int a = br.PeekChar() + 1; // I am not sure if this is correct but it works. Prevent to have a -1 value.
                     byte ans = br.ReadByte();
 
-                    if (ans  == Client.IM_OK)
+                    if (ans == Client.IM_OK)
                     {
                         if (reg)
                         {
-
+                            Logger.Write("Success");
+                            HideFormLogin();
+                            MainClient m = new MainClient();
+                            m.ShowDialog();
                         }
 
                     }
                     else if (ans == Client.IM_WrongPass)
                     {
                         Logger.Write("Wrong Password, Please try again.");
+                        _closeform = false;
                     }
                     else if (ans == Client.IM_NoExists)
                     {
@@ -90,18 +95,42 @@ namespace ChitChatClient.Utils
                     }
                     else if (ans == Client.IM_SomeoneLoggedIn)
                     {
-                        Logger.Write("Someone Logged-In to your account.", ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
+                        Logger.Write("Someone Logged-In to your account.Please log In again.", ChitChatAPI.Enums.LogLevel.Error, ConsoleColor.Red);
                     }
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Write(ex.Message);
             }
         }
+        delegate void HideFormLoginDelegate();
+        private static void HideFormLogin()
+        {
+            //BackgroundWorker bw = new BackgroundWorker();
+            //bw.DoWork += (s, e) => { };
+            //bw.RunWorkerCompleted += (s, e) =>
+            //{
 
+            var a = Application.OpenForms;
+            if (a[0].InvokeRequired == true)
+            {
+                a[0].Invoke((HideFormLoginDelegate)delegate ()
+                 {
+                     a[0].Hide();
+                 });
+            }
 
+            //};
+            //bw.RunWorkerAsync();
+
+        }
+
+        public bool IsClose()
+        {
+            return _closeform;
+        }
         public static bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             // Uncomment this lines to disallow untrusted certificates.
