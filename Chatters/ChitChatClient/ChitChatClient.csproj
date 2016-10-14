@@ -70,6 +70,7 @@
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DBUtil.cs" />
     <Compile Include="MainClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,9 +110,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
@@ -128,6 +127,10 @@
     <ProjectReference Include="..\ChitChatAPI\ChitChatAPI.csproj">
       <Project>{af2c01c9-ff68-456d-9dd7-eaa32b36fb5b}</Project>
       <Name>ChitChatAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceProvider\ServiceProvider.csproj">
+      <Project>{e23771d8-cc75-43ef-8f79-c1af0abbfc3f}</Project>
+      <Name>ServiceProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

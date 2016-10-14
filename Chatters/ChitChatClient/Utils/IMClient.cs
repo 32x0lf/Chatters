@@ -127,10 +127,6 @@ namespace ChitChatClient.Utils
 
         }
 
-        public bool IsClose()
-        {
-            return _closeform;
-        }
         public static bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             // Uncomment this lines to disallow untrusted certificates.

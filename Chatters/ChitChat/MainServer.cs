@@ -39,8 +39,7 @@ namespace ChitChat
             Logger.SetLogger(new EventLogger(LogLevel.Info));
 
 
-            //ipv4 = Servercls.GetLocalIPv4(System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211);
-            //ip = IPAddress.Parse(ipv4);
+            
             ip = IPAddress.Parse(server.Server);
             Logger.Write($"Server {ip}", LogLevel.Info, ConsoleColor.Magenta);
             Logger.Write($"Click Start button to start server", LogLevel.Info, ConsoleColor.Magenta);
